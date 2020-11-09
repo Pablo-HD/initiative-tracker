@@ -1,6 +1,5 @@
-import logo from "./logo.svg";
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Characters from "./components/characters";
 import NewCharacter from "./components/new-character";
 
@@ -10,13 +9,22 @@ function App() {
     name: "",
     hp: 0,
     ac: 0,
-    notes: ""
+    notes: "",
   });
   const [characters, setCharacters] = useState([]);
 
-  const addCharacter = (newCharacter) => {
-    setCharacters([...characters, newCharacter]);
-    console.log(characters);
+  const addCharacter = (character) => {
+    setCharacters([...characters, character]);
+  };
+
+  useEffect(() => {
+    characters.sort((a, b) => parseInt(b.initiative) - parseInt(a.initiative));
+  }, [characters]);
+
+  const editCharacter = (e) => {
+    const name = e.target.name
+    characters[name] = e.target.value
+    
   };
 
   return (
@@ -27,7 +35,7 @@ function App() {
           return <p key={index}>{property}</p>;
         })}
       </div>
-      <Characters characters={characters} />
+      <Characters characters={characters} editCharacter={editCharacter}/>
       <NewCharacter properties={properties} addCharacter={addCharacter} />
     </div>
   );
