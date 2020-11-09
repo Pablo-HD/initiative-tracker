@@ -1,26 +1,21 @@
 import { useState } from "react";
 
 const NewCharacter = ({ properties }) => {
-  const [newCharacter, setNewCharacter] = useState({character: {...properties}, reset: {...properties}});
+  const [newCharacter, setNewCharacter] = useState(properties);
 
-  const handleAdd = (event) => {
-    const { id, value } = event.target;
-    newCharacter.character[id] = value;
-    setNewCharacter({ ...newCharacter.character });
-    console.log(newCharacter);
-  }
-
+  const handleAdd = (e, field) => {
+    setNewCharacter({ ...newCharacter, [field]: e.target.value });
+  };
 
   return (
     <div className="new-character">
-      {Object.entries(newCharacter.character).map((property, index) => {
+      {Object.entries(newCharacter).map((property, index) => {
         return (
           <input
-            onChange={handleAdd}
+            onChange={(e) => handleAdd(e, property[0])}
+            value={property[1]}
             type={typeof value === "number" ? "number" : "text"}
             key={index}
-            id={property[0]}
-            value={property[1]}
           />
         );
       })}
