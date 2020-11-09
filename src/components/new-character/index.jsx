@@ -15,12 +15,13 @@ const NewCharacter = ({ properties, addCharacter }) => {
           <input
             onChange={(e) => setCharacter(e, property[0])}
             value={property[1]}
+            name={property[0]}
             type={typeof value === "number" ? "number" : "text"}
             key={index}
           />
         );
       })}
-      <button onClick={addCharacter}>Add</button>
+      <button onClick={() => addCharacter(newCharacter)}>Add</button>
     </div>
   );
 };
