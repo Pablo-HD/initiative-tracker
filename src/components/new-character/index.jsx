@@ -4,9 +4,13 @@ const NewCharacter = ({ properties, addCharacter }) => {
   const [newCharacter, setNewCharacter] = useState(properties);
 
   const setCharacter = (e, field) => {
-    setNewCharacter({ ...newCharacter, [field]: e.target.value});
+    setNewCharacter({ ...newCharacter, [field]: e.target.value });
   };
 
+  const handleAddCharacter = () => {
+    addCharacter(newCharacter);
+    setNewCharacter(properties);
+  };
 
   return (
     <div className="new-character">
@@ -20,7 +24,7 @@ const NewCharacter = ({ properties, addCharacter }) => {
           />
         );
       })}
-      <button onClick={addCharacter}>Add</button>
+      <button onClick={handleAddCharacter}>Add</button>
     </div>
   );
 };

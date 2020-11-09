@@ -14,6 +14,11 @@ function App() {
   });
   const [characters, setCharacters] = useState([]);
 
+  const addCharacter = (newCharacter) => {
+    setCharacters([...characters, newCharacter]);
+    console.log(characters);
+  };
+
   return (
     <div className="App">
       <h1>Initiative Tracker</h1>
@@ -22,7 +27,8 @@ function App() {
           return <p key={index}>{property}</p>;
         })}
       </div>
-      <NewCharacter properties={properties} />
+      <Characters characters={characters} />
+      <NewCharacter properties={properties} addCharacter={addCharacter} />
     </div>
   );
 }
