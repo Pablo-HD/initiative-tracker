@@ -9,7 +9,7 @@ function App() {
     name: "",
     hp: 0,
     ac: 0,
-    notes: ""
+    notes: "",
   });
   const [characters, setCharacters] = useState([]);
 
@@ -17,15 +17,8 @@ function App() {
     setCharacters([...characters, character]);
   };
 
-  useEffect(() => {
-    characters.sort((a, b) => parseInt(b.initiative) - parseInt(a.initiative));
-  }, [characters]);
-
-  const editCharacter = (e) => {
-    const { name, id, value } = e.target;
-    const newList = JSON.parse(JSON.stringify(characters));
-    newList[id.split("-")[1]][name] = value;
-    setCharacters(newList);
+  const editCharacter = (characters) => {
+    setCharacters(characters);
   };
 
   return (
@@ -36,7 +29,7 @@ function App() {
           return <p key={index}>{property}</p>;
         })}
       </div>
-      <Characters characters={characters} editCharacter={editCharacter} />
+      <Characters characters={characters} editCharacter={editCharacter} setCharacters={setCharacters} />
       <NewCharacter properties={properties} addCharacter={addCharacter} />
     </div>
   );
