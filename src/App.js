@@ -18,10 +18,6 @@ function App() {
     setCharacters([...characters, character]);
   };
 
-  const editCharacter = (characters) => {
-    setCharacters(characters);
-  };
-
   useEffect(() => {
     const charactersSorted = JSON.parse(JSON.stringify(characters));
     charactersSorted.sort(
@@ -39,13 +35,7 @@ function App() {
         })}
         <p></p>
       </div>
-      <Characters
-        characters={characters}
-        editCharacter={editCharacter}
-        setCharacters={setCharacters}
-        setFocus={setFocus}
-        focus={focus}
-      />
+      <Characters characters={characters} setCharacters={setCharacters} />
       <NewCharacter properties={properties} addCharacter={addCharacter} />
     </div>
   );

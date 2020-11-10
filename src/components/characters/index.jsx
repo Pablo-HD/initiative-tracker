@@ -1,11 +1,15 @@
-import { useState } from "react";
+const Characters = ({ characters, setCharacters }) => {
+  const newList = JSON.parse(JSON.stringify(characters));
 
-const Characters = ({ characters, editCharacter, setCharacters }) => {
-  const newList = [...characters];
-
-  const changeCharacter = (e) => {
+  const handleChange = (e) => {
     const { name, id, value } = e.target;
     newList[id.split("-")[1]][name] = value;
+    setCharacters(newList);
+  };
+
+  const handleRemove = (e) => {
+    const index = e.target.id.split("-")[1];
+    newList.splice(index, 1);
     setCharacters(newList);
   };
 
@@ -13,19 +17,18 @@ const Characters = ({ characters, editCharacter, setCharacters }) => {
     <div className="characters">
       {characters.map((character, characterIndex) => {
         return (
-          <div className="character">
+          <div className="character" key={characterIndex}>
             {Object.keys(character).map((key, index) => (
               <input
                 type={typeof value === "number" ? "number" : "text"}
                 key={index}
-                onChange={changeCharacter}
+                onChange={handleChange}
                 name={key}
                 id={`${key}-${characterIndex}`}
                 value={character[key]}
-                onBlur={() => editCharacter(newList)}
               />
             ))}
-            <button>Remove</button>
+            <button onClick={handleRemove}>Remove</button>
           </div>
         );
       })}
