@@ -21,7 +21,7 @@ function App() {
   useEffect(() => {
     const charactersSorted = JSON.parse(JSON.stringify(characters));
     charactersSorted.sort(
-      (a, b) => parseInt(b.initiative) - parseInt(a.initiative)
+      (a, b) => parseInt(b[0].initiative) - parseInt(a[0].initiative)
     );
     setCharacters(charactersSorted);
   }, [focus]);

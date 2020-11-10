@@ -2,13 +2,18 @@ const Characters = ({ characters, setCharacters, setFocus }) => {
   const newList = JSON.parse(JSON.stringify(characters));
 
   const handleChange = (e) => {
-    const { name, id, value } = e.target;
-    newList[id.split("-")[1]][name] = value;
+    const { name, value } = e.target;
+    const id = e.target.parentNode.id;
+    const characterIndex = newList.findIndex(
+      (character) => character[1] === id
+    );
+    newList[characterIndex][0][name] = value;
     setCharacters(newList);
   };
 
   const handleRemove = (e) => {
-    const index = e.target.id.split("-")[1];
+    const id = e.target.parentNode.id;
+    const index = newList.findIndex((character) => character[1] === id);
     newList.splice(index, 1);
     setCharacters(newList);
   };
@@ -24,15 +29,14 @@ const Characters = ({ characters, setCharacters, setFocus }) => {
     <div className="characters">
       {characters.map((character, characterIndex) => {
         return (
-          <div className="character" key={characterIndex}>
-            {Object.keys(character).map((key, index) => (
+          <div className="character" key={characterIndex} id={character[1]}>
+            {Object.keys(character[0]).map((key, index) => (
               <input
                 type={typeof value === "number" ? "number" : "text"}
                 key={index}
                 onChange={handleChange}
                 name={key}
-                id={`${key}-${characterIndex}`}
-                value={character[key]}
+                value={character[0][key]}
                 onKeyPress={handleKeyPress}
               />
             ))}

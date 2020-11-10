@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./NewCharacter.css";
+import { v4 as uuidv4 } from "uuid";
 
 const NewCharacter = ({ properties, addCharacter }) => {
   const [newCharacter, setNewCharacter] = useState(
@@ -11,7 +12,7 @@ const NewCharacter = ({ properties, addCharacter }) => {
   };
 
   const handleAddCharacter = () => {
-    addCharacter(newCharacter);
+    addCharacter([newCharacter, uuidv4()]);
     setNewCharacter(JSON.parse(JSON.stringify(properties)));
   };
 
@@ -23,7 +24,7 @@ const NewCharacter = ({ properties, addCharacter }) => {
             onChange={(e) => setCharacter(e, property[0])}
             value={property[1]}
             name={property[0]}
-            type={typeof value === "number" ? "number" : "text"}
+            type={typeof property[1] === "number" ? "number" : "text"}
             key={index}
           />
         );
