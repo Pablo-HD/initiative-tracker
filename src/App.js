@@ -9,9 +9,10 @@ function App() {
     name: "",
     hp: 0,
     ac: 0,
-    notes: "",
+    notes: ""
   });
   const [characters, setCharacters] = useState([]);
+  const [focus, setFocus] = useState();
 
   const addCharacter = (character) => {
     setCharacters([...characters, character]);
@@ -21,15 +22,30 @@ function App() {
     setCharacters(characters);
   };
 
+  useEffect(() => {
+    const charactersSorted = JSON.parse(JSON.stringify(characters));
+    charactersSorted.sort(
+      (a, b) => parseInt(b.initiative) - parseInt(a.initiative)
+    );
+    setCharacters(charactersSorted);
+  }, [focus]);
+
   return (
-    <div className="App">
+    <div className="App" onClick={(e) => setFocus(e.target)}>
       <h1>Initiative Tracker</h1>
       <div className="properties">
         {Object.keys(properties).map((property, index) => {
           return <p key={index}>{property}</p>;
         })}
+        <p></p>
       </div>
-      <Characters characters={characters} editCharacter={editCharacter} setCharacters={setCharacters} />
+      <Characters
+        characters={characters}
+        editCharacter={editCharacter}
+        setCharacters={setCharacters}
+        setFocus={setFocus}
+        focus={focus}
+      />
       <NewCharacter properties={properties} addCharacter={addCharacter} />
     </div>
   );

@@ -1,0 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Raleway&display=swap");
+
+.new-character {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.new-character input,
+.new-character button {
+  border: none;
+}
+
+.new-character input {
+  border-bottom: 1px solid #ffe8d6;
+}

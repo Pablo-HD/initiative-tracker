@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./NewCharacter.css";
 
 const NewCharacter = ({ properties, addCharacter }) => {
   const [newCharacter, setNewCharacter] = useState(
