@@ -8,8 +8,7 @@ function App() {
     initiative: 0,
     name: "",
     hp: 0,
-    ac: 0,
-    notes: ""
+    ac: 0
   });
   const [characters, setCharacters] = useState([]);
   const [focus, setFocus] = useState();

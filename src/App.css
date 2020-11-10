@@ -39,7 +39,8 @@ h1 {
   text-transform: capitalize;
 }
 
-button {
+button,
+input[type="submit"] {
   background-color: #ffe8d6;
   border: none;
   border-radius: 50px;

@@ -3,19 +3,20 @@ const Characters = ({ characters, setCharacters, setFocus }) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    const id = e.target.parentNode.id;
-    const characterIndex = newList.findIndex(
-      (character) => character[1] === id
-    );
-    newList[characterIndex][0][name] = value;
+    const index = getIndexFromNewList(e.target.parentNode.id);
+    newList[index][0][name] = value;
     setCharacters(newList);
   };
 
   const handleRemove = (e) => {
-    const id = e.target.parentNode.id;
-    const index = newList.findIndex((character) => character[1] === id);
+    const index = getIndexFromNewList(e.target.parentNode.id);
     newList.splice(index, 1);
     setCharacters(newList);
+  };
+
+  const getIndexFromNewList = (id) => {
+    const index = newList.findIndex((character) => character[1] === id);
+    return index;
   };
 
   const handleKeyPress = (e) => {

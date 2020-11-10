@@ -8,16 +8,18 @@ const NewCharacter = ({ properties, addCharacter }) => {
   );
 
   const setCharacter = (e, field) => {
+    e.preventDefault();
     setNewCharacter({ ...newCharacter, [field]: e.target.value });
   };
 
-  const handleAddCharacter = () => {
+  const handleAddCharacter = (e) => {
+    e.preventDefault();
     addCharacter([newCharacter, uuidv4()]);
     setNewCharacter(JSON.parse(JSON.stringify(properties)));
   };
 
   return (
-    <div className="new-character">
+    <form className="new-character" onSubmit={handleAddCharacter}>
       {Object.entries(newCharacter).map((property, index) => {
         return (
           <input
@@ -26,11 +28,12 @@ const NewCharacter = ({ properties, addCharacter }) => {
             name={property[0]}
             type={typeof property[1] === "number" ? "number" : "text"}
             key={index}
+            required
           />
         );
       })}
-      <button onClick={handleAddCharacter}>Add</button>
-    </div>
+      <button>Add</button>
+    </form>
   );
 };
 
