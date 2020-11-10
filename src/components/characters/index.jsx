@@ -1,4 +1,4 @@
-const Characters = ({ characters, setCharacters }) => {
+const Characters = ({ characters, setCharacters, setFocus }) => {
   const newList = JSON.parse(JSON.stringify(characters));
 
   const handleChange = (e) => {
@@ -11,6 +11,13 @@ const Characters = ({ characters, setCharacters }) => {
     const index = e.target.id.split("-")[1];
     newList.splice(index, 1);
     setCharacters(newList);
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      setFocus(document.getElementsByClassName("App")[0]);
+      e.target.blur();
+    }
   };
 
   return (
@@ -26,6 +33,7 @@ const Characters = ({ characters, setCharacters }) => {
                 name={key}
                 id={`${key}-${characterIndex}`}
                 value={character[key]}
+                onKeyPress={handleKeyPress}
               />
             ))}
             <button onClick={handleRemove}>Remove</button>

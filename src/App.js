@@ -35,8 +35,17 @@ function App() {
         })}
         <p></p>
       </div>
-      <Characters characters={characters} setCharacters={setCharacters} />
-      <NewCharacter properties={properties} addCharacter={addCharacter} />
+      <Characters
+        characters={characters}
+        setCharacters={setCharacters}
+        setFocus={setFocus}
+        onClick={(e) => setFocus(e.target)}
+      />
+      <NewCharacter
+        properties={properties}
+        addCharacter={addCharacter}
+        onClick={(e) => setFocus(e.target)}
+      />
     </div>
   );
 }
