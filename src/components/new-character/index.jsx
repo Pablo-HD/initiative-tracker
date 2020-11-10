@@ -1,7 +1,9 @@
 import { useState } from "react";
 
 const NewCharacter = ({ properties, addCharacter }) => {
-  const [newCharacter, setNewCharacter] = useState(properties);
+  const [newCharacter, setNewCharacter] = useState(
+    JSON.parse(JSON.stringify(properties))
+  );
 
   const setCharacter = (e, field) => {
     setNewCharacter({ ...newCharacter, [field]: e.target.value });
@@ -9,7 +11,7 @@ const NewCharacter = ({ properties, addCharacter }) => {
 
   const handleAddCharacter = () => {
     addCharacter(newCharacter);
-    setNewCharacter(properties);
+    setNewCharacter(JSON.parse(JSON.stringify(properties)));
   };
 
   return (
