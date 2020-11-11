@@ -1,0 +1,42 @@
+.characters {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.character {
+  align-items: center;
+  border: 1px solid white;
+  background-color: var(--light-color);
+  border-radius: 30px;
+  color: var(--dark-color);
+  display: flex;
+  flex-direction: column;
+  margin: 0.5rem;
+  padding: 2rem;
+  width: 20rem;
+}
+.character p {
+  margin: 0;
+  text-align: left;
+  width: auto;
+}
+.character span {
+  margin: 1em;
+}
+.character button {
+  background-color: var(--dark-color);
+  border-radius: 8%;
+  color: var(--light-color);
+  height: 1.5em;
+  width: 1.5em;
+}
+.character input {
+  background-color: var(--light-color);
+  color: var(--dark-color);
+  margin: 0;
+  width: auto;
+}
+.rm-btn {
+  margin: 1em;
+}

@@ -1,6 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Raleway&display=swap");
 
 :root {
+  --dark-color: #212529;
+  --light-color: #ffe8d6;
 }
 
 .App {
@@ -15,8 +17,12 @@
   width: 100vw;
 }
 
-.properties,
-.characters div {
+h1 {
+  font-family: "Cinzel Decorative", cursive;
+  letter-spacing: 0.1em;
+}
+
+.properties {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -24,28 +30,18 @@
   width: 100%;
 }
 
-h1 {
-  font-family: "Cinzel Decorative", cursive;
-  letter-spacing: 0.1em;
-}
-
-.properties p,
-.characters div p,
-.characters div button {
+.properties p {
+  text-align: left;
+  text-transform: capitalize;
   width: 10%;
 }
 
-.properties p {
-  text-transform: capitalize;
-}
-
-button,
-input[type="submit"] {
-  background-color: #ffe8d6;
+button {
+  background-color: var(--light-color);
   border: none;
   border-radius: 50px;
   box-sizing: border-box;
-  color: #212529;
+  color: var(--dark-color);
   cursor: pointer;
   font-family: "Raleway", sans-serif;
   height: 2rem;
@@ -57,13 +53,8 @@ input {
   box-sizing: border-box;
   border: none;
   width: 10%;
-  background-color: #212529;
-  color: #ffe8d6;
+  background-color: var(--dark-color);
+  color: var(--light-color);
   font-family: "Raleway", sans-serif;
   outline: none;
-}
-
-.properties p,
-.characters div p {
-  text-align: left;
 }

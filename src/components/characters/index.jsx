@@ -1,12 +1,9 @@
+import "./index.css";
+import "../../fontawesome";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 const Characters = ({ characters, setCharacters, setFocus }) => {
   const newList = JSON.parse(JSON.stringify(characters));
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    const index = getIndexFromNewList(e.target.parentNode.id);
-    newList[index][0][name] = value;
-    setCharacters(newList);
-  };
 
   const handleRemove = (e) => {
     const index = getIndexFromNewList(e.target.parentNode.id);
@@ -19,11 +16,16 @@ const Characters = ({ characters, setCharacters, setFocus }) => {
     return index;
   };
 
-  const handleKeyPress = (e) => {
-    if (e.key === "Enter") {
-      setFocus(document.getElementsByClassName("App")[0]);
-      e.target.blur();
-    }
+  const handleAddHp = (e) => {
+    const index = getIndexFromNewList(e.target.parentNode.parentNode.id);
+    newList[index][0].hp += 1;
+    setCharacters(newList);
+  };
+
+  const handleSubtractHp = (e) => {
+    const index = getIndexFromNewList(e.target.parentNode.parentNode.id);
+    newList[index][0].hp -= 1;
+    setCharacters(newList);
   };
 
   return (
@@ -31,17 +33,33 @@ const Characters = ({ characters, setCharacters, setFocus }) => {
       {characters.map((character, characterIndex) => {
         return (
           <div className="character" key={characterIndex} id={character[1]}>
-            {Object.keys(character[0]).map((key, index) => (
-              <input
-                type={typeof value === "number" ? "number" : "text"}
-                key={index}
-                onChange={handleChange}
-                name={key}
-                value={character[0][key]}
-                onKeyPress={handleKeyPress}
-              />
-            ))}
-            <button onClick={handleRemove}>Remove</button>
+            <h2>
+              <span className="initiative">
+                <FontAwesomeIcon icon={["fas", "bolt"]} />
+                {" " + character[0].initiative}
+              </span>
+              <span className="name">{character[0].name}</span>
+              <span className="ac">
+                <FontAwesomeIcon icon={["fas", "shield-alt"]} />
+                {" " + character[0].ac}
+              </span>
+            </h2>
+            <div className="character-prop">
+              <span>HP</span>
+              <button className="hp-btn" onClick={handleSubtractHp}>
+                -
+              </button>
+              <span>{character[0].hp}</span>
+              <button className="hp-btn" onClick={handleAddHp}>
+                +
+              </button>
+            </div>
+            <FontAwesomeIcon
+              className="rm-btn"
+              icon={["fas", "trash-alt"]}
+              onClick={handleRemove}
+              style={{ cursor: "pointer" }}
+            />
           </div>
         );
       })}
