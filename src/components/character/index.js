@@ -34,7 +34,7 @@ const Character = ({ character }) => {
 
   const handleRemove = () => {
     handleCloseMenu();
-    dispatch(removeCharacter(id));
+    dispatch(removeCharacter(character));
   };
 
   const handleOpenMenu = (event) => {

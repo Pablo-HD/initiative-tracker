@@ -5,10 +5,10 @@ export const addCharacter = (newCharacter) => {
   };
 };
 
-export const removeCharacter = (id) => {
+export const removeCharacter = (character) => {
   return {
     type: "characters/remove",
-    payload: id
+    payload: character
   };
 };
 
