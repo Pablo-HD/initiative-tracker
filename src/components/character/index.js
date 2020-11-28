@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import {
   removeCharacter,
   editCharacter,
+  editCharacters,
   editCharacterProperties,
   openForm
 } from "../../actions";
@@ -14,7 +15,8 @@ import {
   Menu,
   MenuItem,
   Tab,
-  Tabs
+  Tabs,
+  TextField
 } from "@material-ui/core";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 
@@ -52,6 +54,12 @@ const Character = ({ character }) => {
     dispatch(openForm());
   };
 
+  const handleNotes = (e) => {
+    const newCharacterNotes = { ...character };
+    newCharacterNotes.properties.notes = e.target.value;
+    dispatch(editCharacters(newCharacterNotes));
+  };
+
   const handleTab = (e, newValue) => {
     setTabValue(newValue);
   };
@@ -80,7 +88,16 @@ const Character = ({ character }) => {
           properties={properties}
         />
       )}
-      {tabValue === "notes" && <p>Notes</p>}
+      {tabValue === "notes" && (
+        <TextField
+          multiline
+          rows={5}
+          value={properties.notes}
+          onChange={handleNotes}
+          variant="outlined"
+          color="secondary"
+        />
+      )}
       <CardActions>
         <IconButton aria-label="more" onClick={handleOpenMenu}>
           <MoreHorizIcon />
