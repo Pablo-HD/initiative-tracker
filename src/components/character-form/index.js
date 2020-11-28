@@ -47,10 +47,10 @@ const CharacterForm = () => {
   }
 
   const handleClose = () => {
-    dispatch(closeForm());
     if (isEditing) {
       dispatch(cancelEditing());
     }
+    dispatch(closeForm());
   };
 
   return (

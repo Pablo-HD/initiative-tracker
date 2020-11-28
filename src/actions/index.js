@@ -28,11 +28,19 @@ export const editCharacter = (character) => {
 };
 
 export const editCharacters = (character) => {
-  return { type: "characters/edit", payload: character };
+  return { type: "characters/editProperties", payload: character };
 };
 
 export const editCharacterProperties = (properties) => {
   return { type: "newCharacter/isEditing", payload: properties };
+};
+
+export const addCondition = (index, condition) => {
+  return { type: "characters/addCondition", payload: { index, condition } };
+};
+
+export const removeCondition = (index, condition) => {
+  return { type: "characters/removeCondition", payload: { index, condition } };
 };
 
 export const cancelEditing = () => {

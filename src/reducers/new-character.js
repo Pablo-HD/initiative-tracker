@@ -1,8 +1,10 @@
 const properties = {
-  initiative: 0,
+  initiative: "",
   name: "",
-  ac: 0,
-  maxHp: 0
+  ac: "",
+  maxHp: "",
+  notes: "",
+  conditions: []
 };
 
 const newCharacter = (state = { ...properties }, action) => {

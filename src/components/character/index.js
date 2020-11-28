@@ -1,13 +1,20 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { removeCharacter, editCharacter, editCharacterProperties, openForm } from "../../actions";
+import {
+  removeCharacter,
+  editCharacter,
+  editCharacterProperties,
+  openForm
+} from "../../actions";
 
 import {
   Card,
   CardActions,
   IconButton,
   Menu,
-  MenuItem
+  MenuItem,
+  Tab,
+  Tabs
 } from "@material-ui/core";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 
@@ -20,6 +27,8 @@ const Character = ({ character }) => {
 
   const [openOptions, setOpenOptions] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
+  const [tabValue, setTabValue] = useState("info");
+  const [currHp, setCurrHp] = useState(+properties.maxHp);
 
   const handleRemove = () => {
     handleCloseMenu();
@@ -41,7 +50,11 @@ const Character = ({ character }) => {
     dispatch(editCharacterProperties(properties));
     dispatch(editCharacter(character));
     dispatch(openForm());
-  }
+  };
+
+  const handleTab = (e, newValue) => {
+    setTabValue(newValue);
+  };
 
   return (
     <Card className="character" id={id}>
@@ -50,7 +63,24 @@ const Character = ({ character }) => {
         name={properties.name}
         ac={properties.ac}
       />
-      <CharacterDescription maxHp={properties.maxHp} />
+      <Tabs
+        value={tabValue}
+        onChange={handleTab}
+        aria-label="simple tabs example"
+      >
+        <Tab value="info" label="Info" />
+        <Tab value="notes" label="Notes" />
+      </Tabs>
+      {tabValue === "info" && (
+        <CharacterDescription
+          maxHp={properties.maxHp}
+          currHp={currHp}
+          setCurrHp={setCurrHp}
+          id={id}
+          properties={properties}
+        />
+      )}
+      {tabValue === "notes" && <p>Notes</p>}
       <CardActions>
         <IconButton aria-label="more" onClick={handleOpenMenu}>
           <MoreHorizIcon />
