@@ -1,15 +1,15 @@
 import characters from "./characters";
 import isFormOpen from "./is-form-open";
-import newCharacter from "./new-character";
-import editCharacter from "./edit-character";
+import characterForm from "./character-form";
+import isEditingForm from "./is-editing";
 
 import { combineReducers } from "redux";
 
 const allReducers = combineReducers({
   characters,
   isFormOpen,
-  newCharacter,
-  editCharacter
+  characterForm,
+  isEditingForm
 });
 
 export default allReducers;

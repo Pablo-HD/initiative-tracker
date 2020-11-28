@@ -13,20 +13,19 @@ const characters = (state = localList, action) => {
       )
     : -1;
 
-  if (action.type === "characters/add") {
-    newCharacterList
-      .push(action.payload)
-      .sort(
-        (a, b) =>
-          parseInt(b.properties.initiative) - parseInt(a.properties.initiative)
-      );
-  } else if (action.type === "characters/editProperties") {
+  if (action.type === "ADD_CHARACTER") {
+    newCharacterList.push(action.payload);
+    newCharacterList.sort(
+      (a, b) =>
+        parseInt(b.properties.initiative) - parseInt(a.properties.initiative)
+    );
+  } else if (action.type === "CHANGE_CHARACTER") {
     newCharacterList[index] = action.payload;
-  } else if (action.type === "characters/addCondition") {
+  } else if (action.type === "ADD_CONDITION") {
     newCharacterList[action.payload.index].properties.conditions.push(
       action.payload.condition
     );
-  } else if (action.type === "characters/removeCondition") {
+  } else if (action.type === "REMOVE_CONDITION") {
     const conditionIndex = newCharacterList[
       action.payload.index
     ].properties.conditions.findIndex(
@@ -36,7 +35,7 @@ const characters = (state = localList, action) => {
       conditionIndex,
       1
     );
-  } else if (action.type === "characters/remove") {
+  } else if (action.type === "REMOVE_CHARACTER") {
     newCharacterList.splice(index, 1);
   } else {
     return state;

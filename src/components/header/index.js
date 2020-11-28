@@ -1,5 +1,6 @@
 import { Box, Typography, Button } from "@material-ui/core";
 import { useDispatch } from "react-redux";
+import { openForm } from "../../actions";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ const Header = () => {
       <Button
         variant="contained"
         style={{ width: "14em" }}
-        onClick={() => dispatch({ type: "form/open" })}
+        onClick={() => dispatch(openForm())}
       >
         Add Character
       </Button>

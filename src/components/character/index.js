@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import {
   removeCharacter,
-  editCharacter,
+  editingForm,
   editCharacters,
   editCharacterProperties,
   openForm
@@ -50,7 +50,7 @@ const Character = ({ character }) => {
   const handleEdit = () => {
     handleCloseMenu();
     dispatch(editCharacterProperties(properties));
-    dispatch(editCharacter(character));
+    dispatch(editingForm(character));
     dispatch(openForm());
   };
 

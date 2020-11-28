@@ -1,12 +1,12 @@
 const isFormOpen = (state = false, action) => {
   switch (action.type) {
-    case "form/open":
+    case "OPEN_FORM":
       return true;
-    case "form/close":
+    case "CLOSE_FORM":
       return false;
     default:
       return state;
   }
-}
+};
 
 export default isFormOpen;

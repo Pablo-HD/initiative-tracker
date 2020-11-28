@@ -7,18 +7,18 @@ const properties = {
   conditions: []
 };
 
-const newCharacter = (state = { ...properties }, action) => {
+const characterForm = (state = { ...properties }, action) => {
   switch (action.type) {
-    case "newCharacter/change":
+    case "CHANGE_CHARACTER_FORM":
       const { field, value } = action.payload;
       return { ...state, [field]: value };
-    case "newCharacter/reset":
+    case "RESET_CHARACTER_FORM":
       return {...properties};
-    case "newCharacter/isEditing" :
+    case "EDIT_CHARACTER_PROPERTIES" :
       return {...action.payload};
     default:
       return state;
   }
 };
 
-export default newCharacter;
+export default characterForm;

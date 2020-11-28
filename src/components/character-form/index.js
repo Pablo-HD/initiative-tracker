@@ -10,7 +10,7 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 import {
   addCharacter,
-  cancelEditing,
+  cancelEditingForm,
   changeNewCharacter,
   closeForm,
   editCharacters,
@@ -20,10 +20,10 @@ import {
 const CharacterForm = () => {
   const dispatch = useDispatch();
   const isFormOpen = useSelector((state) => state.isFormOpen);
-  const newCharacter = useSelector((state) => state.newCharacter);
-  const isEditing = useSelector((state) => state.editCharacter.isEditing);
+  const characterForm = useSelector((state) => state.characterForm);
+  const isEditing = useSelector((state) => state.isEditingForm.isEditing);
   const currentCharacter = useSelector(
-    (state) => state.editCharacter.character
+    (state) => state.isEditingForm.character
   );
 
   const handleChange = (e) => {
@@ -34,21 +34,23 @@ const CharacterForm = () => {
 
   const handleAddCharacter = (e) => {
     e.preventDefault();
-    dispatch(addCharacter({ properties: newCharacter, id: uuidv4() }));
+    dispatch(addCharacter({ properties: characterForm, id: uuidv4() }));
     dispatch(resetNewCharacter());
     handleClose();
   };
 
   const handleEditCharacter = (e) => {
     e.preventDefault();
-    dispatch(editCharacters({ properties: newCharacter, id: currentCharacter.id }));
+    dispatch(
+      editCharacters({ properties: characterForm, id: currentCharacter.id })
+    );
     dispatch(resetNewCharacter());
-    handleClose(); 
-  }
+    handleClose();
+  };
 
   const handleClose = () => {
     if (isEditing) {
-      dispatch(cancelEditing());
+      dispatch(cancelEditingForm());
     }
     dispatch(closeForm());
   };
@@ -73,7 +75,7 @@ const CharacterForm = () => {
               type="text"
               required
               style={{ flexGrow: 1, margin: "1em" }}
-              value={newCharacter.name}
+              value={characterForm.name}
             />
             <TextField
               required
@@ -82,7 +84,7 @@ const CharacterForm = () => {
               label="Initiative"
               type="number"
               style={{ width: "5em", margin: "1em" }}
-              value={newCharacter.initiative}
+              value={characterForm.initiative}
             />
             <TextField
               onChange={handleChange}
@@ -91,7 +93,7 @@ const CharacterForm = () => {
               type="number"
               required
               style={{ width: "5em", margin: "1em" }}
-              value={newCharacter.ac}
+              value={characterForm.ac}
             />
             <TextField
               onChange={handleChange}
@@ -102,7 +104,7 @@ const CharacterForm = () => {
               style={{ width: "5em", margin: "1em" }}
               min="0"
               required
-              value={newCharacter.maxHp}
+              value={characterForm.maxHp}
             />
           </Box>
         </DialogContent>
