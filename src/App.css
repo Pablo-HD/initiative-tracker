@@ -1,60 +1,26 @@
-@import url("https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Raleway&display=swap");
-
-:root {
-  --dark-color: #212529;
-  --light-color: #ffe8d6;
-}
-
 .App {
   text-align: center;
   display: flex;
   flex-direction: column;
   font-family: "Raleway", sans-serif;
   justify-content: flex-start;
-  margin: auto;
   max-width: 80vw;
   height: 100vh;
-  width: 100vw;
 }
-
-h1 {
-  font-family: "Cinzel Decorative", cursive;
-  letter-spacing: 0.1em;
+.App .title {
+  font-family: "Raleway", sans-serif;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
 }
-
-.properties {
+.App .properties {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   margin-bottom: 1em;
   width: 100%;
 }
-
-.properties p {
+.App .properties p {
   text-align: left;
   text-transform: capitalize;
   width: 10%;
-}
-
-button {
-  background-color: var(--light-color);
-  border: none;
-  border-radius: 50px;
-  box-sizing: border-box;
-  color: var(--dark-color);
-  cursor: pointer;
-  font-family: "Raleway", sans-serif;
-  height: 2rem;
-  outline: none;
-  width: 10%;
-}
-
-input {
-  box-sizing: border-box;
-  border: none;
-  width: 10%;
-  background-color: var(--dark-color);
-  color: var(--light-color);
-  font-family: "Raleway", sans-serif;
-  outline: none;
 }
