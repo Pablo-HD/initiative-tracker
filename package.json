@@ -2,6 +2,7 @@
   "name": "initiative-tracker-2",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://marianaantunes.github.io/initiative-tracker",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
     "@fortawesome/free-solid-svg-icons": "^5.15.1",
