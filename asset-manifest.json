@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/initiative-tracker/static/css/main.cbe9c92e.chunk.css",
+    "main.js": "/initiative-tracker/static/js/main.2c5e9159.chunk.js",
+    "main.js.map": "/initiative-tracker/static/js/main.2c5e9159.chunk.js.map",
+    "runtime-main.js": "/initiative-tracker/static/js/runtime-main.5a87d1e8.js",
+    "runtime-main.js.map": "/initiative-tracker/static/js/runtime-main.5a87d1e8.js.map",
+    "static/js/2.7e23d099.chunk.js": "/initiative-tracker/static/js/2.7e23d099.chunk.js",
+    "static/js/2.7e23d099.chunk.js.map": "/initiative-tracker/static/js/2.7e23d099.chunk.js.map",
+    "index.html": "/initiative-tracker/index.html",
+    "static/css/main.cbe9c92e.chunk.css.map": "/initiative-tracker/static/css/main.cbe9c92e.chunk.css.map",
+    "static/js/2.7e23d099.chunk.js.LICENSE.txt": "/initiative-tracker/static/js/2.7e23d099.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.5a87d1e8.js",
+    "static/js/2.7e23d099.chunk.js",
+    "static/css/main.cbe9c92e.chunk.css",
+    "static/js/main.2c5e9159.chunk.js"
+  ]
+}
