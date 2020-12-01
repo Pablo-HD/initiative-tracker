@@ -3,3 +3,8 @@
 A project to help you track your 5e characters.
 
 Made with react, redux, material ui, little bit of sweat and some other technologies.
+
+### What's next?
+- Mobile version
+- Animations
+- Archive characters for later use
