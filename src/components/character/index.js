@@ -1,71 +1,26 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import {
-  removeCharacter,
-  editingForm,
-  editCharacters,
-  editCharacterProperties,
-  openForm
-} from "../../actions";
 
-import {
-  Card,
-  CardActions,
-  IconButton,
-  Menu,
-  MenuItem,
-  Tab,
-  Tabs,
-  TextField
-} from "@material-ui/core";
-import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
+import Tab from "@material-ui/core/Tab";
+import Tabs from "@material-ui/core/Tabs";
 
 import CharacterDescription from "../character-description";
 import CharacterHeader from "../character-header";
+import CharacterCard from "../character-card";
+import CharacterMenu from "../character-menu";
+import CharacterNotes from "../character-notes";
 
 const Character = ({ character }) => {
   const { id, properties } = character;
-  const dispatch = useDispatch();
 
-  const [openOptions, setOpenOptions] = useState(false);
-  const [anchorEl, setAnchorEl] = useState(null);
   const [tabValue, setTabValue] = useState("info");
   const [currHp, setCurrHp] = useState(+properties.maxHp);
-
-  const handleRemove = () => {
-    handleCloseMenu();
-    dispatch(removeCharacter(character));
-  };
-
-  const handleOpenMenu = (event) => {
-    setOpenOptions(true);
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleCloseMenu = () => {
-    setOpenOptions(false);
-    setAnchorEl(null);
-  };
-
-  const handleEdit = () => {
-    handleCloseMenu();
-    dispatch(editCharacterProperties(properties));
-    dispatch(editingForm(character));
-    dispatch(openForm());
-  };
-
-  const handleNotes = (e) => {
-    const newCharacterNotes = { ...character };
-    newCharacterNotes.properties.notes = e.target.value;
-    dispatch(editCharacters(newCharacterNotes));
-  };
 
   const handleTab = (e, newValue) => {
     setTabValue(newValue);
   };
 
   return (
-    <Card className="character" id={id}>
+    <CharacterCard>
       <CharacterHeader
         initiative={properties.initiative}
         name={properties.name}
@@ -88,31 +43,9 @@ const Character = ({ character }) => {
           properties={properties}
         />
       )}
-      {tabValue === "notes" && (
-        <TextField
-          multiline
-          rows={5}
-          value={properties.notes}
-          onChange={handleNotes}
-          variant="outlined"
-          color="secondary"
-        />
-      )}
-      <CardActions>
-        <IconButton aria-label="more" onClick={handleOpenMenu}>
-          <MoreHorizIcon />
-        </IconButton>
-        <Menu
-          anchorEl={anchorEl}
-          keepMounted
-          open={openOptions}
-          onClose={handleCloseMenu}
-        >
-          <MenuItem onClick={handleEdit}>Edit</MenuItem>
-          <MenuItem onClick={handleRemove}>Remove</MenuItem>
-        </Menu>
-      </CardActions>
-    </Card>
+      {tabValue === "notes" && <CharacterNotes character={character} />}
+      <CharacterMenu character={character} />
+    </CharacterCard>
   );
 };
 

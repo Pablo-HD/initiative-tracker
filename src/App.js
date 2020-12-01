@@ -1,19 +1,18 @@
-import { Paper, Container } from "@material-ui/core";
+import { Container } from "@material-ui/core";
+import Page from "./components/page";
 import Characters from "./components/characters";
 import CharacterForm from "./components/character-form";
 import Header from "./components/header";
 
 function App() {
   return (
-    <div className="App">
-      <Paper square elevation={0} style={{ width: "100vw", height: "100vh" }}>
-        <Container>
-          <Header />
-          <Characters />
-          <CharacterForm />
-        </Container>
-      </Paper>
-    </div>
+    <Page square elevation={0}>
+      <Container>
+        <Header />
+        <Characters />
+        <CharacterForm />
+      </Container>
+    </Page>
   );
 }
 

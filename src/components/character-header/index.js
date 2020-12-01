@@ -2,6 +2,12 @@ import { Box, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles({
+  root: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    padding: "1em .5em .1em"
+  },
   box: {
     display: "flex",
     flexDirection: "column",
@@ -22,8 +28,9 @@ const useStyles = makeStyles({
 
 const CharacterHeader = ({ initiative, name, ac }) => {
   const classes = useStyles();
+
   return (
-    <Box display="flex" justifyContent="space-between" alignItems="center">
+    <Box className={classes.root}>
       <Box className={classes.box}>
         <Typography
           component="span"

@@ -5,15 +5,23 @@ import App from "./App";
 
 import { Provider } from "react-redux";
 import { createStore } from "redux";
-import allReducers from "./reducers";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import allReducers from "./reducers";
 
-const store = createStore(allReducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
-console.log(store.getState());
+const store = createStore(allReducers);
 
 const theme = createMuiTheme({
   palette: {
-    type: "dark"
+    type: "dark",
+    background: {
+      paper: "#282828"
+    },
+    primary: {
+      main: "#98971a"
+    },
+    secondary: {
+      main: "#d79921"
+    }
   }
 });
 

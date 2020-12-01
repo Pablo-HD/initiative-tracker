@@ -1,12 +1,13 @@
 import { v4 as uuidv4 } from "uuid";
-import {
-  Button,
-  TextField,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  Box
-} from "@material-ui/core";
+
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import Box from "@material-ui/core/Box";
+import { makeStyles } from "@material-ui/core/styles";
+
 import { useSelector, useDispatch } from "react-redux";
 import {
   addCharacter,
@@ -17,7 +18,19 @@ import {
   resetNewCharacter
 } from "../../actions";
 
+const useStyles = makeStyles({
+  input: {
+    width: "5em",
+    margin: "1em"
+  },
+  inputName: {
+    flexGrow: 1,
+    margin: "1em"
+  }
+});
+
 const CharacterForm = () => {
+  const classes = useStyles();
   const dispatch = useDispatch();
   const isFormOpen = useSelector((state) => state.isFormOpen);
   const characterForm = useSelector((state) => state.characterForm);
@@ -74,8 +87,8 @@ const CharacterForm = () => {
               label="Character Name"
               type="text"
               required
-              style={{ flexGrow: 1, margin: "1em" }}
               value={characterForm.name}
+              className={classes.inputName}
             />
             <TextField
               required
@@ -83,8 +96,8 @@ const CharacterForm = () => {
               onChange={handleChange}
               label="Initiative"
               type="number"
-              style={{ width: "5em", margin: "1em" }}
               value={characterForm.initiative}
+              className={classes.input}
             />
             <TextField
               onChange={handleChange}
@@ -92,8 +105,8 @@ const CharacterForm = () => {
               id="ac"
               type="number"
               required
-              style={{ width: "5em", margin: "1em" }}
               value={characterForm.ac}
+              className={classes.input}
             />
             <TextField
               onChange={handleChange}
@@ -101,10 +114,10 @@ const CharacterForm = () => {
               type="number"
               InputProps={{ inputProps: { min: 0 } }}
               id="maxHp"
-              style={{ width: "5em", margin: "1em" }}
               min="0"
               required
               value={characterForm.maxHp}
+              className={classes.input}
             />
           </Box>
         </DialogContent>

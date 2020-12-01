@@ -13,32 +13,42 @@ const characters = (state = localList, action) => {
       )
     : -1;
 
-  if (action.type === "ADD_CHARACTER") {
-    newCharacterList.push(action.payload);
-    newCharacterList.sort(
-      (a, b) =>
-        parseInt(b.properties.initiative) - parseInt(a.properties.initiative)
-    );
-  } else if (action.type === "CHANGE_CHARACTER") {
-    newCharacterList[index] = action.payload;
-  } else if (action.type === "ADD_CONDITION") {
-    newCharacterList[action.payload.index].properties.conditions.push(
-      action.payload.condition
-    );
-  } else if (action.type === "REMOVE_CONDITION") {
-    const conditionIndex = newCharacterList[
-      action.payload.index
-    ].properties.conditions.findIndex(
-      (con) => con === action.payload.condition
-    );
-    newCharacterList[action.payload.index].properties.conditions.splice(
-      conditionIndex,
-      1
-    );
-  } else if (action.type === "REMOVE_CHARACTER") {
-    newCharacterList.splice(index, 1);
-  } else {
-    return state;
+  switch (action.type) {
+    case "ADD_CHARACTER":
+      newCharacterList.push(action.payload);
+      newCharacterList.sort(
+        (a, b) =>
+          parseInt(b.properties.initiative) - parseInt(a.properties.initiative)
+      );
+      break;
+    case "CHANGE_CHARACTER":
+      newCharacterList[index] = action.payload;
+      newCharacterList.sort(
+        (a, b) =>
+          parseInt(b.properties.initiative) - parseInt(a.properties.initiative)
+      );
+      break;
+    case "ADD_CONDITION":
+      newCharacterList[action.payload.index].properties.conditions.push(
+        action.payload.condition
+      );
+      break;
+    case "REMOVE_CONDITION":
+      const conditionIndex = newCharacterList[
+        action.payload.index
+      ].properties.conditions.findIndex(
+        (con) => con === action.payload.condition
+      );
+      newCharacterList[action.payload.index].properties.conditions.splice(
+        conditionIndex,
+        1
+      );
+      break;
+    case "REMOVE_CHARACTER":
+      newCharacterList.splice(index, 1);
+      break;
+    default:
+      return state;
   }
 
   window.localStorage.setItem("characters", JSON.stringify(newCharacterList));

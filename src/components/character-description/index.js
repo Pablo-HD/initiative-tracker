@@ -1,26 +1,11 @@
-import { IconButton, Chip } from "@material-ui/core";
+import { Box, IconButton, Chip } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
 
 import { useDispatch, useSelector } from "react-redux";
 import { addCondition, removeCondition } from "../../actions";
 
-const conditions = [
-  "Blinded",
-  "Charmed",
-  "Deafened",
-  "Frightened",
-  "Grappled",
-  "Incapacitated",
-  "Invisible",
-  "Paralyzed",
-  "Petrified",
-  "Poisoned",
-  "Prone",
-  "Restrained",
-  "Stunned",
-  "Unconscious"
-];
+import conditions from "../../conditions";
 
 const CharacterDescription = ({ currHp, setCurrHp, maxHp, id, properties }) => {
   const dispatch = useDispatch();
@@ -33,9 +18,7 @@ const CharacterDescription = ({ currHp, setCurrHp, maxHp, id, properties }) => {
   };
 
   const handleChip = (e) => {
-    const hasCondition = properties.conditions.includes(
-      e.target.innerText
-    );
+    const hasCondition = properties.conditions.includes(e.target.innerText);
     if (hasCondition) {
       dispatch(removeCondition(characterIndex, e.target.innerText));
     } else {
@@ -44,7 +27,12 @@ const CharacterDescription = ({ currHp, setCurrHp, maxHp, id, properties }) => {
   };
 
   return (
-    <>
+    <Box
+      display="flex"
+      flexDirection="column"
+      justifyContent="center"
+      alignItems="center"
+    >
       <div
         className="character-description"
         style={{
@@ -59,11 +47,12 @@ const CharacterDescription = ({ currHp, setCurrHp, maxHp, id, properties }) => {
           <RemoveIcon />
         </IconButton>
         <span>{currHp}</span>
-        <span> / {maxHp}</span>
+        <span>&nbsp;/ {maxHp}</span>
         <IconButton onClick={() => handleHp("add")}>
           <AddIcon />
         </IconButton>
       </div>
+      <p style={{ fontSize: ".6rem", marginTop: -6 }}>HIT POINTS</p>
       <div
         style={{
           display: "flex",
@@ -79,12 +68,17 @@ const CharacterDescription = ({ currHp, setCurrHp, maxHp, id, properties }) => {
               size="small"
               label={condition}
               key={index}
-              color={properties.conditions.includes(condition) ? "secondary" : "default"}
+              color={
+                properties.conditions.includes(condition)
+                  ? "secondary"
+                  : "default"
+              }
+              style={{ margin: "1px" }}
             />
           );
         })}
       </div>
-    </>
+    </Box>
   );
 };
 

@@ -1,17 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Raleway&display=swap");
-
-:root {
-  --dark-color: #212529;
-  --light-color: #ffe8d6;
-}
+@import url("https://fonts.googleapis.com/css2?family=Patua+One&display=swap");
 
 body {
-  background-color: var(--dark-color);
-  color: var(--light-color);
   margin: 0;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  padding: 0;
+  background-color: #282828;
 }
